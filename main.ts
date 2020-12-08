@@ -1,3 +1,11 @@
+input.onButtonPressed(Button.A, function () {
+    adjust = heure
+    time = "" + adjust
+    time = "" + time + ":"
+    time = "" + time + Math.trunc(minutes / 10)
+    time = "" + time + Math.trunc(minutes % 10)
+    basic.showString(time)
+})
 input.onButtonPressed(Button.B, function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
@@ -14,10 +22,20 @@ input.onButtonPressed(Button.B, function () {
 let pourcentage = 0
 let sol = 0
 let Température = 0
+let minutes = 0
+let heure = 0
+let adjust = 0
+let time = ""
 radio.setGroup(1)
 led.setBrightness(100)
-Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
+time = ""
+adjust = 0
+heure = 15
+minutes = 23
+Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P10)
 let Angle_fenetre = 160
+let strip = neopixel.create(DigitalPin.P0, 40, NeoPixelMode.RGB)
+strip.showColor(neopixel.colors(NeoPixelColors.Black))
 servos.P1.setAngle(Angle_fenetre)
 servos.P2.setAngle(0)
 basic.pause(2000)
@@ -48,7 +66,7 @@ basic.forever(function () {
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 4
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P10) + 4
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
@@ -71,4 +89,25 @@ basic.forever(function () {
     }
     // 60 secondes avant la prochaine mesure
     basic.pause(60000)
+})
+basic.forever(function () {
+    basic.pause(60000)
+    if (minutes < 59) {
+        minutes += 1
+    } else {
+        minutes = 0
+        if (heure < 23) {
+            heure += 1
+        } else {
+            heure = 0
+        }
+    }
+})
+basic.forever(function () {
+    if (heure == 15 && minutes == 24) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Green))
+    }
+    if (heure == 15 && minutes == 25) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Black))
+    }
 })
