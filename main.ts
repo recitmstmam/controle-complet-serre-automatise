@@ -52,7 +52,7 @@ basic.forever(function () {
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
-    if (Température >= 25) {
+    if (Température >= 27) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
         while (Angle_fenetre > 35) {
             Angle_fenetre += -1
