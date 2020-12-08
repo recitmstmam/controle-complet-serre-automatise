@@ -17,7 +17,6 @@ radio.setGroup(1)
 led.setBrightness(100)
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
-let fin = pins.digitalReadPin(DigitalPin.P5)
 servos.P1.setAngle(Angle_fenetre)
 servos.P2.setAngle(0)
 basic.pause(2000)
@@ -66,13 +65,4 @@ basic.forever(function () {
     }
     // 30 secondes avant la prochaine mesure
     basic.pause(5000)
-    if (input.buttonIsPressed(Button.A)) {
-        while (Angle_fenetre > 45) {
-            Angle_fenetre += -1
-            servos.P1.setAngle(Angle_fenetre)
-            basic.pause(15)
-        }
-        servos.P1.stop()
-        control.waitForEvent(fin, 0)
-    }
 })
