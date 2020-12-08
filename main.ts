@@ -15,6 +15,7 @@ input.onButtonPressed(Button.B, function () {
 })
 let pourcentage = 0
 let sol = 0
+radio.setGroup(1)
 led.setBrightness(100)
 let Température = 0
 let Angle_fenetre = 160
@@ -40,6 +41,7 @@ basic.forever(function () {
     } else if (pourcentage > 98) {
         servos.P2.setAngle(0)
     }
+    radio.sendValue("sol", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
     // 30 secondes avant la prochaine mesure
