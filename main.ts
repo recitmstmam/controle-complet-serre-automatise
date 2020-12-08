@@ -29,8 +29,8 @@ basic.forever(function () {
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     pourcentage = Math.round((sol - 600) * 100 / (1023 - 600))
-    // Si l'humidité du sol est inférieure à 90 % arroser jusqu'à ce que l'humidité soit supérieure à 95%.
-    // Lorsque l'humidité du sol est supérieure à 95% arrêter d'arroser jusqu'à ce que l'humidité soit inférieure à 90 %.
+    // Si l'humidité du sol est inférieure à 95 % arroser jusqu'à ce que l'humidité soit supérieure à 98%.
+    // Lorsque l'humidité du sol est supérieure à 98% arrêter d'arroser jusqu'à ce que l'humidité soit inférieure à 95 %.
     if (pourcentage < 95) {
         servos.P2.setAngle(180)
     } else if (pourcentage >= 95 && pourcentage <= 98) {
