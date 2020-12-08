@@ -41,8 +41,8 @@ basic.forever(function () {
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
-    // 30 secondes avant la prochaine mesure
-    basic.pause(5000)
+    // 60 secondes avant la prochaine mesure
+    basic.pause(60000)
 })
 basic.forever(function () {
     Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
@@ -63,6 +63,6 @@ basic.forever(function () {
         }
         servos.P1.stop()
     }
-    // 30 secondes avant la prochaine mesure
-    basic.pause(5000)
+    // 60 secondes avant la prochaine mesure
+    basic.pause(60000)
 })
