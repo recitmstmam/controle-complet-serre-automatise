@@ -49,7 +49,7 @@ basic.forever(function () {
     Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
     basic.pause(1000)
     radio.sendValue("T ", Température)
-    if (Température >= 27) {
+    if (Température >= 25) {
         while (Angle_fenetre > 45) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
