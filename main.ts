@@ -7,16 +7,16 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+    sol = pins.analogReadPin(AnalogPin.P3)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
-    pourcentage = Math.round((0 - 615) * 100 / (1023 - 615))
+    pourcentage = Math.round((sol - 600) * 100 / (1023 - 600))
     basic.showString("" + pourcentage + "%")
 })
 let pourcentage = 0
-let Température = 0
+let sol = 0
 led.setBrightness(100)
-Température = 0
+let Température = 0
 let Angle_fenetre = 160
 let fin = pins.digitalReadPin(DigitalPin.P5)
 servos.P1.setAngle(Angle_fenetre)
@@ -27,10 +27,10 @@ servos.P2.stop()
 basic.forever(function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+    sol = pins.analogReadPin(AnalogPin.P3)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
-    pourcentage = Math.round((0 - 615) * 100 / (1023 - 615))
+    pourcentage = Math.round((sol - 600) * 100 / (1023 - 600))
     // Si l'humidité du sol est inférieure à 90 % arroser jusqu'à ce que l'humidité soit supérieure à 95%.
     // Lorsque l'humidité du sol est supérieure à 95% arrêter d'arroser jusqu'à ce que l'humidité soit inférieure à 90 %.
     if (pourcentage < 95) {
