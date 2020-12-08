@@ -44,11 +44,11 @@ basic.forever(function () {
     basic.pause(1000)
     servos.P2.stop()
     // 60 secondes avant la prochaine mesure
-    basic.pause(5000)
+    basic.pause(60000)
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 3
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 4
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
@@ -70,5 +70,5 @@ basic.forever(function () {
         servos.P1.stop()
     }
     // 60 secondes avant la prochaine mesure
-    basic.pause(5000)
+    basic.pause(60000)
 })
