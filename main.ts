@@ -44,14 +44,15 @@ basic.forever(function () {
     basic.pause(1000)
     servos.P2.stop()
     // 60 secondes avant la prochaine mesure
-    basic.pause(60000)
+    basic.pause(5000)
 })
 basic.forever(function () {
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
+    // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 3
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
-    if (Température >= 27) {
+    if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
         while (Angle_fenetre > 35) {
             Angle_fenetre += -1
@@ -69,5 +70,5 @@ basic.forever(function () {
         servos.P1.stop()
     }
     // 60 secondes avant la prochaine mesure
-    basic.pause(60000)
+    basic.pause(5000)
 })
