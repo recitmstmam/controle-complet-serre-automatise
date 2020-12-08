@@ -1,9 +1,3 @@
-input.onButtonPressed(Button.AB, function () {
-    basic.showString("T=" + Math.round(0) + "C")
-    basic.pause(1000)
-    basic.showString("H=" + Math.round(0) + "%")
-    basic.pause(1000)
-})
 input.onButtonPressed(Button.B, function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
@@ -11,13 +5,17 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     pourcentage = Math.round((sol - 600) * 100 / (1023 - 600))
-    basic.showString("" + pourcentage + "%")
+    basic.showString("T=" + Température + "C")
+    basic.pause(1000)
+    basic.showString("H=" + pourcentage + "%")
+    basic.pause(1000)
 })
 let pourcentage = 0
 let sol = 0
+let Température = 0
 radio.setGroup(1)
 led.setBrightness(100)
-let Température = 0
+Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let fin = pins.digitalReadPin(DigitalPin.P5)
 servos.P1.setAngle(Angle_fenetre)
@@ -41,15 +39,17 @@ basic.forever(function () {
     } else if (pourcentage > 98) {
         servos.P2.setAngle(0)
     }
-    radio.sendValue("sol", pourcentage)
+    radio.sendValue("H ", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
     // 30 secondes avant la prochaine mesure
-    basic.pause(30000)
+    basic.pause(5000)
 })
 basic.forever(function () {
     Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
-    if (Température >= 25) {
+    basic.pause(1000)
+    radio.sendValue("T ", Température)
+    if (Température >= 27) {
         while (Angle_fenetre > 45) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
@@ -64,6 +64,8 @@ basic.forever(function () {
         }
         servos.P1.stop()
     }
+    // 30 secondes avant la prochaine mesure
+    basic.pause(5000)
     if (input.buttonIsPressed(Button.A)) {
         while (Angle_fenetre > 45) {
             Angle_fenetre += -1
