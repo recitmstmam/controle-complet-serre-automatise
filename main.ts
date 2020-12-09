@@ -63,16 +63,16 @@ basic.forever(function () {
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
-    // 60 secondes avant la prochaine mesure
-    basic.pause(5000)
+    // 1 heure avant la prochaine mesure
+    basic.pause(3600000)
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 4
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 2
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
-    if (Température >= 27) {
+    if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
         while (Angle_fenetre > 35) {
             Angle_fenetre += -1
@@ -90,7 +90,7 @@ basic.forever(function () {
         servos.P1.stop()
     }
     // 60 secondes avant la prochaine mesure
-    basic.pause(5000)
+    basic.pause(60000)
 })
 basic.forever(function () {
     basic.pause(60000)
@@ -106,7 +106,7 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (heure == 7 && minutes == 20) {
+    if (heure == 17 && minutes == 0) {
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
         range.showColor(neopixel.colors(NeoPixelColors.Blue))
