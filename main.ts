@@ -9,7 +9,7 @@ input.onButtonPressed(Button.A, function () {
 input.onButtonPressed(Button.B, function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    sol = pins.analogReadPin(AnalogPin.P3)
+    sol = pins.analogReadPin(AnalogPin.P4)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     // Ajuster cette valeur dans tous ce calcul avec la valeur de la variable « sol » lorsque la sonde n'est pas dans le sol.
@@ -27,14 +27,14 @@ let heure = 0
 let adjust = 0
 let time = ""
 radio.setGroup(1)
-led.setBrightness(100)
+led.setBrightness(255)
 time = ""
 adjust = 0
-heure = 16
-minutes = 54
-Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P10)
+heure = 17
+minutes = 10
+Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
-let strip = neopixel.create(DigitalPin.P0, 40, NeoPixelMode.RGB)
+let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
 servos.P1.setAngle(Angle_fenetre)
 servos.P2.setAngle(0)
@@ -44,7 +44,7 @@ servos.P2.stop()
 basic.forever(function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    sol = pins.analogReadPin(AnalogPin.P3)
+    sol = pins.analogReadPin(AnalogPin.P4)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     // Ajuster cette valeur dans tous ce calcul avec la valeur de la variable « sol » lorsque la sonde n'est pas dans le sol.
@@ -62,11 +62,11 @@ basic.forever(function () {
     basic.pause(1000)
     servos.P2.stop()
     // 60 secondes avant la prochaine mesure
-    basic.pause(60000)
+    basic.pause(5000)
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P10) + 4
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 4
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
@@ -88,7 +88,7 @@ basic.forever(function () {
         servos.P1.stop()
     }
     // 60 secondes avant la prochaine mesure
-    basic.pause(60000)
+    basic.pause(5000)
 })
 basic.forever(function () {
     basic.pause(60000)
@@ -104,10 +104,10 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (heure == 17 && minutes == 0) {
+    if (heure == 17 && minutes == 11) {
         strip.showColor(neopixel.colors(NeoPixelColors.Green))
     }
-    if (heure == 17 && minutes == 10) {
+    if (heure == 17 && minutes == 12) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
