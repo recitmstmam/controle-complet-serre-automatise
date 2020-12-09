@@ -19,6 +19,8 @@ input.onButtonPressed(Button.B, function () {
     basic.showString("H=" + pourcentage + "%")
     basic.pause(1000)
 })
+let range2: neopixel.Strip = null
+let range: neopixel.Strip = null
 let pourcentage = 0
 let sol = 0
 let Température = 0
@@ -105,7 +107,10 @@ basic.forever(function () {
 })
 basic.forever(function () {
     if (heure == 7 && minutes == 20) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Green))
+        range = strip.range(0, 20)
+        range2 = strip.range(20, 20)
+        range.showColor(neopixel.colors(NeoPixelColors.Blue))
+        range2.showColor(neopixel.colors(NeoPixelColors.Red))
     }
     if (heure == 7 && minutes == 30) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
