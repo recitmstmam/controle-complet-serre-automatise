@@ -9,7 +9,7 @@ input.onButtonPressed(Button.A, function () {
 input.onButtonPressed(Button.B, function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    sol = pins.analogReadPin(AnalogPin.P4)
+    sol = pins.analogReadPin(AnalogPin.P3)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     // Ajuster cette valeur dans tous ce calcul avec la valeur de la variable « sol » lorsque la sonde n'est pas dans le sol.
@@ -46,7 +46,7 @@ servos.P2.stop()
 basic.forever(function () {
     pins.digitalWritePin(DigitalPin.P7, 1)
     basic.pause(100)
-    sol = pins.analogReadPin(AnalogPin.P4)
+    sol = pins.analogReadPin(AnalogPin.P3)
     basic.pause(100)
     pins.digitalWritePin(DigitalPin.P7, 0)
     // Ajuster cette valeur dans tous ce calcul avec la valeur de la variable « sol » lorsque la sonde n'est pas dans le sol.
