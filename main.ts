@@ -33,7 +33,7 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 heure = 17
-minutes = 40
+minutes = 37
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
