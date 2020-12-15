@@ -65,8 +65,8 @@ basic.forever(function () {
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
-    // 1 heure avant la prochaine mesure
-    basic.pause(3600000)
+    // 1 minute avant la prochaine mesure
+    basic.pause(60000)
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
