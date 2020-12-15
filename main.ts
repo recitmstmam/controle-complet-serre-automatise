@@ -33,9 +33,9 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
-heure = 9
+heure = 11
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
-minutes = 44
+minutes = 15
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -76,10 +76,10 @@ basic.forever(function () {
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
     if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
-        while (Angle_fenetre > 57) {
+        while (Angle_fenetre > 58) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
-            basic.pause(15)
+            basic.pause(25)
         }
         servos.P1.stop()
     } else {
@@ -87,7 +87,7 @@ basic.forever(function () {
         while (Angle_fenetre < 160) {
             Angle_fenetre += 1
             servos.P1.setAngle(Angle_fenetre)
-            basic.pause(15)
+            basic.pause(25)
         }
         servos.P1.stop()
     }
