@@ -32,8 +32,8 @@ radio.setGroup(1)
 led.setBrightness(255)
 time = ""
 adjust = 0
-heure = 17
-minutes = 50
+heure = 19
+minutes = 4
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -74,7 +74,7 @@ basic.forever(function () {
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
     if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
-        while (Angle_fenetre > 42) {
+        while (Angle_fenetre > 55) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
             basic.pause(15)
@@ -106,7 +106,7 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (heure == 18 && minutes == 0) {
+    if (heure == 19 && minutes == 5) {
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
         range.showColor(neopixel.colors(NeoPixelColors.Blue))
