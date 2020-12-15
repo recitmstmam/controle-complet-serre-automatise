@@ -32,8 +32,8 @@ radio.setGroup(1)
 led.setBrightness(255)
 time = ""
 adjust = 0
-heure = 19
-minutes = 4
+heure = 7
+minutes = 45
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -106,13 +106,14 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (heure == 19 && minutes == 5) {
+    strip.setBrightness(255)
+    if (heure == 17 && minutes == 0) {
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
         range.showColor(neopixel.colors(NeoPixelColors.Blue))
         range2.showColor(neopixel.colors(NeoPixelColors.Red))
     }
-    if (heure == 7 && minutes == 0) {
+    if (heure == 7 && minutes == 30) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
