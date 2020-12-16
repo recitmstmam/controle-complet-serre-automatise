@@ -33,9 +33,9 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
-heure = 16
+heure = 18
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
-minutes = 11
+minutes = 19
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -112,7 +112,7 @@ basic.forever(function () {
     // Permet d'ajuster l'intensité lumineuse des DEL
     strip.setBrightness(255)
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    if (heure == 17 && minutes == 0) {
+    if (heure == 18 && minutes == 30) {
         // Permet de sélectionner des couleurs d'éclairage.  Ici les DEL 0 à 19 sont bleues et les DEL 20 à 40 sont rouges.  Si on veut ajouter d'autres couleurs, il faut créer un nouvelle variable (ex : range3).SI on veut une seule couleur, on retire les blocs en lien avec "range2".
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
