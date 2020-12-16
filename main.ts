@@ -35,7 +35,7 @@ adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
 heure = 8
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
-minutes = 28
+minutes = 55
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -66,7 +66,7 @@ basic.forever(function () {
     basic.pause(1000)
     servos.P2.stop()
     // 1 heure avant la prochaine mesure
-    basic.pause(3600000)
+    basic.pause(60000)
 })
 basic.forever(function () {
     // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
@@ -112,7 +112,7 @@ basic.forever(function () {
     // Permet d'ajuster l'intensité lumineuse des DEL
     strip.setBrightness(255)
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    if (heure == 17 && minutes == 0) {
+    if (heure == 9 && minutes == 0) {
         // Permet de sélectionner des couleurs d'éclairage.  Ici les DEL 0 à 19 sont bleues et les DEL 20 à 40 sont rouges.  Si on veut ajouter d'autres couleurs, il faut créer un nouvelle variable (ex : range3).SI on veut une seule couleur, on retire les blocs en lien avec "range2".
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
@@ -120,7 +120,7 @@ basic.forever(function () {
         range2.showColor(neopixel.colors(NeoPixelColors.Red))
     }
     // Ajuster l'heure à laquelle vous désirez fermer les lumières.
-    if (heure == 17 && minutes == 20) {
+    if (heure == 9 && minutes == 10) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
