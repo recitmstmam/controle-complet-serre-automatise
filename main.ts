@@ -69,20 +69,17 @@ basic.forever(function () {
     basic.pause(60000)
 })
 basic.forever(function () {
+    // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
+    Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 2
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    while (heure >= 18 && minutes < 24) {
+    if (heure >= 18 && heure < 24) {
         // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-        Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) - 8
+        Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) - 5
     }
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    while (heure >= 0 && minutes < 7) {
+    if (heure >= 0 && heure < 7) {
         // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-        Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) - 8
-    }
-    // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    while (heure >= 7 && minutes < 18) {
-        // Calibrer votre sonde avec un autre thermomètre et ajuster le calcul en conséquence.
-        Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) + 2
+        Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0) - 5
     }
     basic.pause(100)
     radio.sendValue("T ", Température)
