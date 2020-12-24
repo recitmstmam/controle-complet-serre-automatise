@@ -33,9 +33,9 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
-heure = 18
+heure = 8
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
-minutes = 19
+minutes = 55
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -56,7 +56,7 @@ basic.forever(function () {
     // Si l'humidité du sol est inférieure à 95 % arroser jusqu'à ce que l'humidité soit supérieure à 98%.
     // Lorsque l'humidité du sol est supérieure à 98% arrêter d'arroser jusqu'à ce que l'humidité soit inférieure à 95 %.
     if (pourcentage < 95) {
-        servos.P2.setAngle(170)
+        servos.P2.setAngle(180)
     } else if (pourcentage >= 95 && pourcentage <= 98) {
         servos.P2.stop()
     } else if (pourcentage > 98) {
@@ -65,7 +65,7 @@ basic.forever(function () {
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
     servos.P2.stop()
-    // 1 minute avant la prochaine mesure
+    // 1 heure avant la prochaine mesure
     basic.pause(60000)
 })
 basic.forever(function () {
@@ -76,7 +76,7 @@ basic.forever(function () {
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
     if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
-        while (Angle_fenetre > 58) {
+        while (Angle_fenetre > 57) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
             basic.pause(25)
@@ -112,7 +112,7 @@ basic.forever(function () {
     // Permet d'ajuster l'intensité lumineuse des DEL
     strip.setBrightness(255)
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    if (heure == 18 && minutes == 30) {
+    if (heure == 9 && minutes == 0) {
         // Permet de sélectionner des couleurs d'éclairage.  Ici les DEL 0 à 19 sont bleues et les DEL 20 à 40 sont rouges.  Si on veut ajouter d'autres couleurs, il faut créer un nouvelle variable (ex : range3).SI on veut une seule couleur, on retire les blocs en lien avec "range2".
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
@@ -120,7 +120,7 @@ basic.forever(function () {
         range2.showColor(neopixel.colors(NeoPixelColors.Red))
     }
     // Ajuster l'heure à laquelle vous désirez fermer les lumières.
-    if (heure == 7 && minutes == 30) {
+    if (heure == 9 && minutes == 10) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
