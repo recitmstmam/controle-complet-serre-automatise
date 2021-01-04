@@ -33,7 +33,7 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
-heure = 16
+heure = 11
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
 minutes = 23
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
@@ -41,7 +41,7 @@ let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
 servos.P1.setAngle(Angle_fenetre)
-servos.P2.setAngle(0)
+servos.P2.setAngle(20)
 basic.pause(2000)
 servos.P1.stop()
 servos.P2.stop()
@@ -56,11 +56,11 @@ basic.forever(function () {
     // Si l'humidité du sol est inférieure à 95 % arroser jusqu'à ce que l'humidité soit supérieure à 98%.
     // Lorsque l'humidité du sol est supérieure à 98% arrêter d'arroser jusqu'à ce que l'humidité soit inférieure à 95 %.
     if (pourcentage < 95) {
-        servos.P2.setAngle(180)
+        servos.P2.setAngle(160)
     } else if (pourcentage >= 95 && pourcentage <= 98) {
         servos.P2.stop()
     } else if (pourcentage > 98) {
-        servos.P2.setAngle(0)
+        servos.P2.setAngle(20)
     }
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
