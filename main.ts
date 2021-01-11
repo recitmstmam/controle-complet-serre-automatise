@@ -33,9 +33,9 @@ led.setBrightness(255)
 time = ""
 adjust = 0
 // Ajuster l'heure lorsque vous démarrerez le micro:bit
-heure = 8
+heure = 13
 // Ajuster les minutes lorsque vous démarrerez le micro:bit
-minutes = 50
+minutes = 0
 Température = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
 let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
@@ -74,9 +74,9 @@ basic.forever(function () {
     basic.pause(100)
     radio.sendValue("T ", Température)
     // Ajuster cette valeur en fonction de vos paramètres expérimentaux
-    if (Température >= 22) {
+    if (Température >= 25) {
         // Auster cette valeur de l'angle d'ouverture pour que la fenêtre reste ouverte sans courant.
-        while (Angle_fenetre > 55) {
+        while (Angle_fenetre > 53) {
             Angle_fenetre += -1
             servos.P1.setAngle(Angle_fenetre)
             basic.pause(25)
@@ -112,7 +112,7 @@ basic.forever(function () {
     // Permet d'ajuster l'intensité lumineuse des DEL
     strip.setBrightness(255)
     // Ajuster l'heure à laquelle vous désirez ouvrir les lumières.
-    if (heure == 9 && minutes == 0) {
+    if (heure == 18 && minutes == 0) {
         // Permet de sélectionner des couleurs d'éclairage.  Ici les DEL 0 à 19 sont bleues et les DEL 20 à 40 sont rouges.  Si on veut ajouter d'autres couleurs, il faut créer un nouvelle variable (ex : range3).SI on veut une seule couleur, on retire les blocs en lien avec "range2".
         range = strip.range(0, 20)
         range2 = strip.range(20, 20)
@@ -120,7 +120,7 @@ basic.forever(function () {
         range2.showColor(neopixel.colors(NeoPixelColors.Red))
     }
     // Ajuster l'heure à laquelle vous désirez fermer les lumières.
-    if (heure == 10 && minutes == 0) {
+    if (heure == 7 && minutes == 30) {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
