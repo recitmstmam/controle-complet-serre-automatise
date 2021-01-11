@@ -41,7 +41,7 @@ let Angle_fenetre = 160
 let strip = neopixel.create(DigitalPin.P12, 40, NeoPixelMode.RGB)
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
 servos.P1.setAngle(Angle_fenetre)
-servos.P2.setAngle(20)
+servos.P2.setAngle(10)
 basic.pause(2000)
 servos.P1.stop()
 servos.P2.stop()
@@ -60,7 +60,7 @@ basic.forever(function () {
     } else if (pourcentage >= 95 && pourcentage <= 98) {
         servos.P2.stop()
     } else if (pourcentage > 98) {
-        servos.P2.setAngle(20)
+        servos.P2.setAngle(10)
     }
     radio.sendValue("H ", pourcentage)
     basic.pause(1000)
