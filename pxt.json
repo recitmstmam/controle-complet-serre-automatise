@@ -1,5 +1,5 @@
 {
-    "name": "Controle complet serre automatisée",
+    "name": "Controle-complet-serre-automatise",
     "version": "0.0.1",
     "description": "",
     "dependencies": {
@@ -7,7 +7,8 @@
         "radio": "*",
         "servo": "*",
         "microphone": "*",
-        "smarthome-kit": "github:tinkertanker/pxt-smarthome#v1.0.8"
+        "smarthome-kit": "github:tinkertanker/pxt-smarthome#v1.0.8",
+        "data-streamer": "github:microsoft/pxt-hacking-stem#v0.1.0"
     },
     "files": [
         "main.blocks",
